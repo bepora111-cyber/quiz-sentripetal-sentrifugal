@@ -168,6 +168,11 @@ body.dark button{
         background-position: 0% 50%;
     }
 }
+@media (max-width: 768px){
+    .leaflet-control-zoom{
+        display: none !important;
+    }
+}
 </style>
 </head>
 <body>
@@ -199,7 +204,13 @@ body.dark button{
 <script>
 // ================= MAP =================
  let btnA, btnB, question;
-const map = L.map('map').setView([20,0],2);
+const map = L.map('map', {
+    zoomControl: false
+}).setView([20,0],2);
+
+L.control.zoom({
+    position: 'topright'
+}).addTo(map);
 
 const lightLayer = L.tileLayer(
 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
